@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start:api": "npm start --prefix api",
-    "start": "npm run start:api\",
+    "start": "npm run start:api",
     "deploy:api": "git subtree push --prefix api heroku master"
   },
   "workspaces": [
