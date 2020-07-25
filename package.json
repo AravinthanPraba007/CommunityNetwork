@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "npm start --prefix api",
+    "start:api": "npm start --prefix api",
+    "start:frontend": "npm start --prefix frontend",
+    "start": "concurrently \"npm run start:api\" \"npm run start:frontend\"",
     "deploy:api": "git subtree push --prefix api heroku master"
   },
   "workspaces": [
