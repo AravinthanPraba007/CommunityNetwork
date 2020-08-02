@@ -16,6 +16,10 @@ import PostPopupOptions from './PostPopupOptions';
 
 import { GET_POST } from 'graphql/post';
 
+import { A } from 'components/Text';
+import { generatePath } from 'react-router-dom';
+import * as Routes from 'routes';
+
 const Root = styled.div`
   margin: 0 auto;
   margin: ${p => !p.usedInModal && p.theme.spacing.lg} 0;
@@ -94,6 +98,30 @@ const Title = styled.div`
   border-bottom: 1px solid ${p => p.theme.colors.border.light};
   padding: ${p => p.theme.spacing.xs};
 `;
+/**
+ * Extra component Meant for the created by user info
+ * 
+ */
+
+const Author = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+border-bottom: 1px solid ${p => p.theme.colors.border.main};
+padding: ${p => p.theme.spacing.xs};
+margin-bottom: ${p => p.theme.spacing.xxs};
+`;
+
+const UserName = styled.div`
+  max-width: 100%;
+  font-size: ${p => p.theme.font.size.xs};
+  font-weight: ${p => p.theme.font.weight.bold};
+`;
+
+const CreatedBy = styled.div`
+  font-size: ${p => p.theme.font.size.xxs};
+  padding-left: ${p => p.theme.spacing.xs};
+`;
 
 /**
  * Displays post with comments and options
@@ -128,6 +156,23 @@ const PostPopup = ({ id, closeModal, usedInModal }) => {
               <Right usedInModal={usedInModal}>
                 <Spacing>
                   <PostPopupInfo author={post.author} />
+
+                  {post.createdBy.id !== post.author.id && (
+                    <Author>
+                      <CreatedBy>
+                        Posted by
+                      </CreatedBy>
+                      <Spacing left="xs" inline>
+                        <A
+                          to={generatePath(Routes.USER_PROFILE, {
+                            username: post.createdBy.username
+                          })}
+                        >
+                          <UserName>{post.createdBy.fullName}</UserName>
+                        </A>
+                      </Spacing>
+                    </Author>
+                  )}
 
                   {post.title && <Title>{post.title}</Title>}
 
