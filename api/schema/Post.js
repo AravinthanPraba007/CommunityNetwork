@@ -13,6 +13,7 @@ const PostSchema = gql`
     image: File
     imagePublicId: String
     author: User!
+    createdBy: User!
     likes: [Like]
     comments: [Comment]
     createdAt: String
@@ -27,6 +28,7 @@ const PostSchema = gql`
     image: Upload
     imagePublicId: String
     authorId: ID!
+    createdBy: ID!
   }
 
   input DeletePostInput {

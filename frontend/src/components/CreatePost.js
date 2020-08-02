@@ -77,7 +77,7 @@ const Buttons = styled.div`
 /**
  * Component for creating a post
  */
-const CreatePost = () => {
+const CreatePost = ({ user }) => {
   const [{ auth }] = useStore();
   const [title, setTitle] = useState('');
   const [image, setImage] = useState('');
@@ -124,7 +124,7 @@ const CreatePost = () => {
   return (
     <Mutation
       mutation={CREATE_POST}
-      variables={{ input: { title, image, authorId: auth.user.id } }}
+      variables={{ input: { title, image, authorId: user.id, createdBy:auth.user.id } }}
       refetchQueries={() => [
         {
           query: GET_FOLLOWED_POSTS,
@@ -135,10 +135,13 @@ const CreatePost = () => {
           },
         },
         { query: GET_AUTH_USER },
+/**
+ * Fetching the profile post after uploading a post in the profile
+ */        
         {
           query: GET_USER_POSTS,
           variables: {
-            username: auth.user.username,
+            username: user.username,
             skip: 0,
             limit: PROFILE_PAGE_POSTS_LIMIT,
           },

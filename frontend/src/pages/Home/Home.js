@@ -64,7 +64,7 @@ const Home = () => {
 
       <Spacing top="lg" />
 
-      <CreatePost />
+      <CreatePost user={auth.user}/>
 
       <Query
         query={GET_FOLLOWED_POSTS}
