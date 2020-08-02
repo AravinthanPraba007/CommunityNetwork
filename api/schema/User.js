@@ -91,6 +91,9 @@ const UserSchema = gql`
     email: String
     username: String
     password: String
+    linkedInUrl: String
+    headLine: String
+    isPage:Boolean
     image: String
     imagePublicId: String
     coverImage: String
