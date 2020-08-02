@@ -64,7 +64,7 @@ const Home = () => {
 
       <Spacing top="lg" />
 
-      <CreatePost user={auth.user}/>
+      <CreatePost user={auth.user} />
 
       <Query
         query={GET_FOLLOWED_POSTS}
@@ -125,6 +125,7 @@ const Home = () => {
                         <Spacing bottom="lg" top="lg">
                           <PostCard
                             author={post.author}
+                            createdBy={post.createdBy}
                             imagePublicId={post.imagePublicId}
                             postId={post.id}
                             comments={post.comments}

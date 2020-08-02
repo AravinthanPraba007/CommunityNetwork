@@ -3,6 +3,7 @@ import {
   postCommentsPayload,
   postAuthorPayload,
   postLikesPayload,
+  postCreatedByPayload,
 } from './post';
 
 /**
@@ -74,6 +75,7 @@ export const GET_USER_POSTS = gql`
         imagePublicId
         createdAt
         ${postAuthorPayload}
+        ${postCreatedByPayload}
         ${postCommentsPayload}
         ${postLikesPayload}
       }

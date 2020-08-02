@@ -94,6 +94,7 @@ const ProfilePosts = ({ username }) => {
                     <Spacing bottom="lg">
                       <PostCard
                         author={post.author}
+                        createdBy={post.createdBy}
                         postId={post.id}
                         imagePublicId={post.imagePublicId}
                         comments={post.comments}

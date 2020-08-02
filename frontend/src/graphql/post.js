@@ -106,6 +106,7 @@ export const GET_FOLLOWED_POSTS = gql`
         imagePublicId
         createdAt
         ${postAuthorPayload}
+        ${postCreatedByPayload}
         ${postCommentsPayload}
         ${postLikesPayload}
       }
@@ -125,6 +126,7 @@ export const GET_POSTS = gql`
         title
         image
         ${postAuthorPayload}
+        ${postCreatedByPayload}
         ${postCommentsPayload}
         ${postLikesPayload}
       }
@@ -143,6 +145,7 @@ export const GET_POST = gql`
       image
       createdAt
       ${postAuthorPayload}
+      ${postCreatedByPayload}
       ${postCommentsPayload}
       ${postLikesPayload}
     }

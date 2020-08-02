@@ -117,10 +117,33 @@ const CommentLine = styled.div`
 `;
 
 /**
+ * Extra component
+ * 
+ */
+
+const CreatedBy = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+border-bottom: 1px solid ${p => p.theme.colors.border.main};
+border-top: 1px solid ${p => p.theme.colors.border.main};
+padding: ${p => p.theme.spacing.xs};
+margin-bottom: ${p => p.theme.spacing.xxs};
+`;
+
+
+
+const CreatedByText = styled.div`
+  font-size: ${p => p.theme.font.size.xxs};
+  padding-left: ${p => p.theme.spacing.xs};
+`;
+
+/**
  * Component for rendering user post
  */
 const PostCard = ({
   author,
+  createdBy,
   imagePublicId,
   comments,
   title,
@@ -172,7 +195,7 @@ const PostCard = ({
           },
         ],
       });
-    } catch (err) {}
+    } catch (err) { }
 
     setIsOptionOpen(false);
   };
@@ -207,6 +230,23 @@ const PostCard = ({
             <DotsIcon />
           </Button>
         </TopRow>
+
+        {createdBy.id !== author.id && (
+          <CreatedBy>
+            <CreatedByText>
+              Posted by
+        </CreatedByText>
+            <Spacing left="xs" inline>
+              <A
+                to={generatePath(Routes.USER_PROFILE, {
+                  username: createdBy.username
+                })}
+              >
+                <Name>{createdBy.fullName}</Name>
+              </A>
+            </Spacing>
+          </CreatedBy>
+        )}
 
         <Spacing left="sm" bottom="sm" top="xs">
           <H3>{title}</H3>
@@ -271,6 +311,7 @@ const PostCard = ({
 
 PostCard.propTypes = {
   author: PropTypes.object.isRequired,
+  createdBy: PropTypes.object,
   imagePublicId: PropTypes.string,
   title: PropTypes.string.isRequired,
   image: PropTypes.string,
