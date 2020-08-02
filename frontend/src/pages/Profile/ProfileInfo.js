@@ -84,7 +84,33 @@ const List = styled.div`
     padding: 0 ${p => p.theme.spacing.lg};
   }
 `;
+/**
+ *Extra components
+ */
+const HeadLineInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  font-size: ${p => p.theme.font.size.xs};
+  margin-top: ${p => p.theme.spacing.sm};
+  margin-left: ${p => p.theme.spacing.sm};
+  margin-right: ${p => p.theme.spacing.sm};
+`;
+const Button = styled.button`
+  height: 27px;
+  outline: none;
+  font-size: ${p => p.theme.font.size.xxs};
+  font-weight: ${p => p.theme.font.weight.bold};
+  transition: background-color 0.2s, border-color 0.1s;
+  border-radius: ${p => p.theme.radius.sm};
+  color: ${p => p.theme.colors.black};
+  padding: ${p => p.theme.spacing.xxs} ${p => p.theme.spacing.xs};
+  border: ${p => `1px solid ${p.theme.colors.border.main}`};
+  background-color: ${p => 'transparent'};
+  border-color: ${p => p.theme.colors.border.dark};
 
+`;
 /**
  * Renders user information in profile page
  */
@@ -100,6 +126,17 @@ const ProfileInfo = ({ user }) => {
     isUserOnline = data.isUserOnline.isOnline;
   }
 
+  let isPage = user.isPage;
+  let linkedInUrl = user.linkedInUrl;
+  let linkedInUrlEmpty = true;
+  let headLineEmpty = true;
+
+  if ((user.headLine) && (user.headLine.trim() !== '')) {
+    headLineEmpty = false;
+  }
+  if ((user.linkedInUrl) && (user.linkedInUrl.trim() !== '')) {
+    linkedInUrlEmpty = false;
+  }
   return (
     <Root>
       <ProfileCoverUpload
@@ -115,7 +152,15 @@ const ProfileInfo = ({ user }) => {
           imagePublicId={user.imagePublicId}
           username={user.username}
         />
-
+        {isPage && (
+          <Info>
+            <Button
+              disabled={loading}
+            >
+              Page
+            </Button>
+          </Info>
+        )}
         <FullName>
           <H1>{user.fullName}</H1>
 
@@ -145,6 +190,28 @@ const ProfileInfo = ({ user }) => {
           <b>{user.following.length} </b> following
         </List>
       </Info>
+
+      {!linkedInUrlEmpty && (
+        <>
+          <Info>
+            <u><b>Connect via </b></u>
+          </Info>
+          <HeadLineInfo>
+            <Link to="route" target="_blank" onClick={(event) => { event.preventDefault(); window.open(linkedInUrl); }}>
+              {user.linkedInUrl}
+            </Link>
+          </HeadLineInfo>
+        </>
+      )}
+
+      {!headLineEmpty && (
+        <>
+          <Info><b> <u>HeadLine: </u></b></Info>
+          <HeadLineInfo>
+            {user.headLine}
+          </HeadLineInfo>
+        </>
+      )}
     </Root>
   );
 };
