@@ -28,6 +28,20 @@ const userSchema = new Schema(
     },
     passwordResetToken: String,
     passwordResetTokenExpiry: Date,
+    linkedInUrl: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    headLine: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    isPage:{
+      type: Boolean,
+      default: false,
+    },
     password: {
       type: String,
       required: true,

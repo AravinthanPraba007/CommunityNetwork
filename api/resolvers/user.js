@@ -349,10 +349,13 @@ const Mutation = {
    * @param {string} email
    * @param {string} username
    * @param {string} password
+   * @param {string} linkedInUrl
+   * @param {string} headLine
+   * @param {boolean} isPage
    */
   signup: async (
     root,
-    { input: { fullName, email, username, password } },
+    { input: { fullName, email, username, password, linkedInUrl, headLine, isPage } },
     { User }
   ) => {
     // Check if user with given email or username already exists
@@ -363,7 +366,7 @@ const Mutation = {
     }
 
     // Empty field validation
-    if (!fullName || !email || !username || !password) {
+    if (!fullName || !email || !username || !password || !linkedInUrl || !headLine ) {
       throw new Error('All fields are required.');
     }
 
@@ -416,6 +419,9 @@ const Mutation = {
       email,
       username,
       password,
+      linkedInUrl,
+      headLine,
+      isPage,
     }).save();
 
     return {
