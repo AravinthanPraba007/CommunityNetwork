@@ -17,6 +17,9 @@ const userPayload = `
   imagePublicId
   coverImage
   coverImagePublicId
+  linkedInUrl
+  headLine
+  isPage
   createdAt
 `;
 
