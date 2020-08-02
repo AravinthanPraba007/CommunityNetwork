@@ -50,6 +50,7 @@ const PostSchema = gql`
     image: String
     imagePublicId: String
     author: UserPayload!
+    createdBy: UserPayload!
     likes: [Like]
     comments: [CommentPayload]
     createdAt: String
