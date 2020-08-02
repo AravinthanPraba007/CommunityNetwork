@@ -44,7 +44,7 @@ const Heading = styled(H1)`
 const Form = styled.div`
   padding: ${p => p.theme.spacing.md};
   border-radius: ${p => p.theme.radius.sm};
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(240, 233, 146) ;
   width: 100%;
 
   @media (min-width: ${p => p.theme.screen.sm}) {
