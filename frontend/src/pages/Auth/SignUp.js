@@ -53,6 +53,36 @@ const Form = styled.div`
 `;
 
 /**
+ * 
+ * Extra components 
+ */
+const InputTextarea = styled.textarea`
+  outline: 0;
+  height: ${p => ( '120px')};
+  width: 100%;
+  transition: border 0.1s;
+  border-radius: ${p => p.theme.radius.sm};
+  padding-left: ${p => p.theme.spacing.xs};
+  border: 1px solid
+    ${p =>
+      p.borderColor
+        ? p.theme.colors[p.borderColor]
+        : p.theme.colors.border.main};
+  color: ${p => p.theme.colors.text.secondary};
+
+  &:focus {
+    border-color: ${p => p.theme.colors.border.main};
+  }
+  
+`;
+
+ const TextMessage =styled.label`
+ font-size: ${p => p.theme.font.size.xxs};
+ color: ${p => p.theme.colors.text.secondary};
+ padding-left: ${p => p.theme.spacing.xs};
+ `;
+
+/**
  * Sign Up page
  */
 const SignUp = ({ history, refetch }) => {
@@ -62,15 +92,24 @@ const SignUp = ({ history, refetch }) => {
     username: '',
     email: '',
     password: '',
+    linkedInUrl:'',
+    headLine:'',
   });
-
+  const [checked, setChecked]= useState({
+    isPage:false,
+  });
+  const handleCheckboxChange =e => {
+    const name = e.target.name;
+    const value= e.target.checked;
+    setChecked({ ...checked, [name]: value });
+  };
   const handleChange = e => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
 
   const validate = () => {
-    if (!fullName || !email || !username || !password) {
+    if (!fullName || !email || !username || !password || !linkedInUrl || !headLine) {
       return 'All fields are required';
     }
 
@@ -133,12 +172,13 @@ const SignUp = ({ history, refetch }) => {
     return null;
   };
 
-  const { fullName, email, password, username } = values;
+  const { fullName, email, password, username, linkedInUrl, headLine  } = values;
+  const {isPage} = checked; 
 
   return (
     <Mutation
       mutation={SIGN_UP}
-      variables={{ input: { fullName, email, password, username } }}
+      variables={{ input: { fullName, email, password, username, linkedInUrl, headLine, isPage } }}
     >
       {(signup, { loading, error: apiError }) => {
         return (
@@ -198,6 +238,38 @@ const SignUp = ({ history, refetch }) => {
                     placeholder="Password"
                     borderColor="white"
                   />
+                </Spacing>
+                
+                <InputText
+                  type="text"
+                  name="linkedInUrl"
+                  values={linkedInUrl}
+                  onChange={handleChange}
+                  placeholder="LinkedIn Profile Url"
+                  borderColor="white"
+                />
+                <Spacing top="xs" bottom="xs">
+                <InputTextarea
+                    type="textarea"
+                    name="headLine"
+                    values={headLine}
+                    onChange={handleChange}
+                    placeholder="Profile headLine/description"
+                    borderColor="white"
+                  />
+                </Spacing>
+
+                <Spacing top="xs" bottom="xs">
+                
+                <input 
+                  type="checkbox" 
+                  name="isPage"
+                  onChange={handleCheckboxChange} 
+                  defaultChecked={isPage}
+                  />
+		             <TextMessage>
+                    Are you creating a page ? {checked.isPage}
+                 </TextMessage>
                 </Spacing>
 
                 {renderErrors(apiError)}
