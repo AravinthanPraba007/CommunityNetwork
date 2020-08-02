@@ -186,6 +186,7 @@ export const SEARCH_USERS = gql`
       fullName
       username
       image
+      headLine
     }
   }
 `;
