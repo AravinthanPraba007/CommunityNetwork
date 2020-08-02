@@ -52,6 +52,11 @@ const Profile = ({ match }) => {
           }
 
           if (error || !data.getUser) return <NotFound />;
+          let createPost = false;
+
+          if (data.getUser.isPage || username === auth.user.username) {
+            createPost = true;
+          }
 
           return (
             <Container padding="xxs">
@@ -59,7 +64,7 @@ const Profile = ({ match }) => {
 
               <Container maxWidth="sm">
                 <Spacing top="lg" bottom="lg">
-                  {username === auth.user.username && <CreatePost user={auth.user}/>}
+                  {createPost && <CreatePost user={auth.user} />}
                 </Spacing>
 
                 <ProfilePosts username={username} />
