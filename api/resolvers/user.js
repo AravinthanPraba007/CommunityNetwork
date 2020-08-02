@@ -235,7 +235,7 @@ const Query = {
     return { users, count };
   },
   /**
-   * Searches users by username or fullName
+   * Searches users by username or fullName or headline
    *
    * @param {string} searchQuery
    */
@@ -249,6 +249,7 @@ const Query = {
       $or: [
         { username: new RegExp(searchQuery, 'i') },
         { fullName: new RegExp(searchQuery, 'i') },
+        { headLine: new RegExp(searchQuery, 'i') },
       ],
       _id: {
         $ne: authUser.id,
