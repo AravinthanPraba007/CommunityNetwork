@@ -50,6 +50,12 @@ const NoSearchResult = styled.div`
   padding: ${p => p.theme.spacing.xs};
   color: ${p => p.theme.colors.text.main};
 `;
+/**
+ * Extra component 
+ */
+const HeadLine = styled.div`
+  font-size: ${p => p.theme.font.size.xxs};
+`;
 
 /**
  * Displays search result, meant to be used in Search component
@@ -62,6 +68,8 @@ const SearchResult = ({ users, forMessage }) => {
       </Root>
     );
   }
+
+  const MAX_LENGTH = 15;
 
   return (
     <Root>
@@ -80,6 +88,16 @@ const SearchResult = ({ users, forMessage }) => {
             <Spacing left="xs">
               <Name>{user.fullName}</Name>
               <UserName>@{user.username}</UserName>
+              {user.headLine != null && user.headLine.length > MAX_LENGTH ?
+                (
+                  <HeadLine>
+                    {`${user.headLine.substring(0, MAX_LENGTH)}...`}
+                  </HeadLine>
+                ) :
+                <HeadLine>
+                  {user.headLine}
+                </HeadLine>
+              }
             </Spacing>
           </Item>
         </StyledA>
