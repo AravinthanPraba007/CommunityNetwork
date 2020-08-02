@@ -30,6 +30,13 @@ const Query = {
           },
         ],
       })
+      .populate({
+        path: 'createdBy',
+        populate: [
+          { path: 'following' },
+          { path: 'followers' },
+        ],
+      })
       .populate('likes')
       .populate({
         path: 'comments',
@@ -79,6 +86,13 @@ const Query = {
           },
         ],
       })
+      .populate({
+        path: 'createdBy',
+        populate: [
+          { path: 'following' },
+          { path: 'followers' },
+        ],
+      })
       .populate('likes')
       .populate({
         path: 'comments',
@@ -112,6 +126,13 @@ const Query = {
               { path: 'comment' },
             ],
           },
+        ],
+      })
+      .populate({
+        path: 'createdBy',
+        populate: [
+          { path: 'following' },
+          { path: 'followers' },
         ],
       })
       .populate('likes')

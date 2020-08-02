@@ -184,6 +184,13 @@ const Query = {
           },
         ],
       })
+      .populate({
+        path: 'createdBy',
+        populate: [
+          { path: 'following' },
+          { path: 'followers' },
+        ],
+      })
       .populate('likes')
       .populate({
         path: 'comments',
