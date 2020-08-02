@@ -131,10 +131,11 @@ const Mutation = {
    * @param {string} title
    * @param {string} image
    * @param {string} authorId
+   * @param {string} createdBy
    */
   createPost: async (
     root,
-    { input: { title, image, authorId } },
+    { input: { title, image, authorId, createdBy } },
     { Post, User }
   ) => {
     if (!title && !image) {
@@ -162,6 +163,7 @@ const Mutation = {
       image: imageUrl,
       imagePublicId,
       author: authorId,
+      createdBy: createdBy,
     }).save();
 
     await User.findOneAndUpdate(
