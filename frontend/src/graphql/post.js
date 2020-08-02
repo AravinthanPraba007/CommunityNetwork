@@ -15,7 +15,25 @@ export const postCommentsPayload = `
     }
   }
 `;
-
+/**
+ * Records to select from post createdBy
+ */
+export const postCreatedByPayload = `
+  createdBy {
+    id
+    username
+    fullName
+    image
+    following {
+      id
+      user
+    }
+    followers {
+      id
+      user
+    }
+  }
+`;
 /**
  * Records to select from post author
  */
