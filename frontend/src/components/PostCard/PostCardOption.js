@@ -43,7 +43,7 @@ const StyledButton = styled(Button)`
 /**
  * Post Card options, meant to be used in PostCard components Modal
  */
-const PostCardOption = ({ postId, author, closeOption, deletePost }) => {
+const PostCardOption = ({ postId, author, createdBy, closeOption, deletePost }) => {
   const [{ auth }] = useStore();
 
   const copyToClipboard = () => {
@@ -60,6 +60,12 @@ const PostCardOption = ({ postId, author, closeOption, deletePost }) => {
     closeOption();
   };
 
+  let postOwner=false;
+
+          if(auth.user.id === author.id  || auth.user.id === createdBy.id ){
+            postOwner=true;
+          }
+
   return (
     <Root>
       {auth.user.id !== author.id && (
@@ -72,7 +78,7 @@ const PostCardOption = ({ postId, author, closeOption, deletePost }) => {
         Copy link
       </StyledButton>
 
-      {auth.user.id === author.id && (
+      {postOwner && (
         <StyledButton fullWidth text onClick={deletePost}>
           Delete post
         </StyledButton>
@@ -88,6 +94,7 @@ const PostCardOption = ({ postId, author, closeOption, deletePost }) => {
 PostCardOption.propTypes = {
   postId: PropTypes.string.isRequired,
   author: PropTypes.object.isRequired,
+  createdBy: PropTypes.object.isRequired,
   closeOption: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
 };

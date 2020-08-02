@@ -208,6 +208,7 @@ const PostCard = ({
             postId={postId}
             closeOption={closeOption}
             author={author}
+            createdBy={createdBy}
             deletePost={deletePost}
           />
         </Modal>
