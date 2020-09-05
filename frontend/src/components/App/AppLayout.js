@@ -16,6 +16,7 @@ import People from 'pages/People';
 import Notifications from 'pages/Notifications';
 import Post from 'pages/Post';
 import Messages from 'pages/Messages';
+import UnderConstruction from 'components/UnderConstruction';
 
 import { useWindowSize } from 'hooks/useWindowSize';
 import { useClickOutside } from 'hooks/useClickOutside';
@@ -97,6 +98,10 @@ const AppLayout = ({ location, authUser }) => {
           <Route exact path={Routes.NOTIFICATIONS} component={Notifications} />
 
           <Route exact path={Routes.ABOUTUS} component={Aboutus} />
+
+          <Route exact path={Routes.RESOURCES} component={UnderConstruction} />
+          
+          <Route exact path={Routes.JOB_SEARCH}  component={UnderConstruction} />
 
           <Route exact path={Routes.MESSAGES} component={Messages} />
 

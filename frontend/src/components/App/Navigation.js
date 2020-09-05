@@ -97,13 +97,27 @@ const Navigation = () => {
         </ListItem>
       </Link>
 
-      {/* <Link exact activeClassName="selected" to={Routes.ABOUTUS}> */}
       <Link exact activeClassName="selected" to={Routes.ABOUTUS}>
         <ListItem>
           <SearchIcon width={18} />
           <Name>About Us</Name>
         </ListItem>
       </Link> 
+
+      <Link exact activeClassName="selected" to={Routes.RESOURCES}>
+        <ListItem>
+          <SearchIcon width={18} />
+          <Name>Resources</Name>
+        </ListItem>
+      </Link>
+
+      <Link exact activeClassName="selected" to={Routes.JOB_SEARCH}>
+        <ListItem>
+          <SearchIcon width={18} />
+          <Name>Job Search</Name>
+        </ListItem>
+      </Link>
+
     </List>
   );
 };

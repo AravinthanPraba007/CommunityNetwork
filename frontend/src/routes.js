@@ -14,6 +14,10 @@ export const EXPLORE = '/explore';
 
 export const PEOPLE = '/people';
 
+export const RESOURCES = '/resources';
+
+export const JOB_SEARCH = '/job-search';
+
 export const NOTIFICATIONS = '/notifications';
 
 export const ABOUTUS = '/aboutus';
