@@ -10,6 +10,7 @@ import {
   HomeIcon,
   PeopleIcon,
   EnvelopeIcon,
+  SearchIcon,
 } from 'components/icons';
 
 const Link = styled(NavLink)`
@@ -95,6 +96,14 @@ const Navigation = () => {
           <Name>Messages</Name>
         </ListItem>
       </Link>
+
+      {/* <Link exact activeClassName="selected" to={Routes.ABOUTUS}> */}
+      <Link exact activeClassName="selected" to={Routes.ABOUTUS}>
+        <ListItem>
+          <SearchIcon width={18} />
+          <Name>About Us</Name>
+        </ListItem>
+      </Link> 
     </List>
   );
 };

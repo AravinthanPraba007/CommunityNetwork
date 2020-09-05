@@ -26,6 +26,7 @@ import theme from 'theme';
 
 import { useStore } from 'store';
 import { SET_AUTH_USER } from 'store/auth';
+import Aboutus from 'pages/AboutUs';
 
 const Root = styled.div`
   display: flex;
@@ -94,6 +95,8 @@ const AppLayout = ({ location, authUser }) => {
           <Route exact path={Routes.PEOPLE} component={People} />
 
           <Route exact path={Routes.NOTIFICATIONS} component={Notifications} />
+
+          <Route exact path={Routes.ABOUTUS} component={Aboutus} />
 
           <Route exact path={Routes.MESSAGES} component={Messages} />
 
