@@ -249,7 +249,7 @@ const PostCard = ({
           </CreatedBy>
         )}
 
-        <Spacing left="sm" bottom="sm" top="xs">
+        <Spacing left="sm" bottom="sm" top="xs" style={{wordWrap :"break-word"}}>
           <H3>{title}</H3>
         </Spacing>
 
