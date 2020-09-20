@@ -7,8 +7,7 @@ import { Loading } from 'components/Loading';
 import Empty from 'components/Empty';
 import InfiniteScroll from 'components/InfiniteScroll';
 import Head from 'components/Head';
-import PeopleCard from './PeopleCard';
-
+import PageCard from './PageCard';
 import { GET_USERS } from 'graphql/user';
 
 import { PEOPLE_PAGE_USERS_LIMIT } from 'constants/DataLimit';
@@ -26,7 +25,7 @@ const Root = styled(Container)`
   }
 `;
 
-const PeopleContainer = styled.div`
+const PageContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 3fr));
   grid-auto-rows: auto;
@@ -35,20 +34,20 @@ const PeopleContainer = styled.div`
 `;
 
 /**
- * People page
+ * List of PAGES page
  */
-const People = () => {
+const Page = () => {
   const [{ auth }] = useStore();
   const variables = {
     userId: auth.user.id,
-    isPage: false,
+    isPage: true,
     skip: 0,
     limit: PEOPLE_PAGE_USERS_LIMIT,
   };
 
   return (
     <Root maxWidth="md">
-      <Head title="Find new People" />
+      <Head title="Find new Pages" />
 
       <Query
         query={GET_USERS}
@@ -58,15 +57,15 @@ const People = () => {
         {({ data, loading, fetchMore, networkStatus }) => {
           if (loading && networkStatus === 1) {
             return (
-              <PeopleContainer>
+              <PageContainer>
                 <Skeleton height={280} count={PEOPLE_PAGE_USERS_LIMIT} />
-              </PeopleContainer>
+              </PageContainer>
             );
           }
 
           const { users, count } = data.getUsers;
 
-          if (!users.length > 0) return <Empty text="No people yet." />;
+          if (!users.length > 0) return <Empty text="No pages yet." />;
 
           return (
             <InfiniteScroll
@@ -82,11 +81,11 @@ const People = () => {
 
                 return (
                   <Fragment>
-                    <PeopleContainer>
+                    <PageContainer>
                       {data.map(user => (
-                        <PeopleCard key={user.id} user={user} />
+                        <PageCard key={user.id} user={user} />
                       ))}
-                    </PeopleContainer>
+                    </PageContainer>
 
                     {showNextLoading && <Loading top="lg" />}
                   </Fragment>
@@ -100,4 +99,4 @@ const People = () => {
   );
 };
 
-export default People;
+export default Page;

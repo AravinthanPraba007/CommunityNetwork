@@ -148,8 +148,8 @@ export const GET_AUTH_USER = gql`
  * Gets all available users
  */
 export const GET_USERS = gql`
-  query($userId: String!, $skip: Int, $limit: Int) {
-    getUsers(userId: $userId, skip: $skip, limit: $limit) {
+  query($userId: String!, $isPage: Boolean, $skip: Int, $limit: Int) {
+    getUsers(userId: $userId, isPage: $isPage, skip: $skip, limit: $limit) {
       count
       users {
         id

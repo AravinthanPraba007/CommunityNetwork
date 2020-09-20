@@ -207,10 +207,11 @@ const Query = {
    * Gets all users
    *
    * @param {string} userId
+   * @param {boolean} isPage
    * @param {int} skip how many users to skip
    * @param {int} limit how many users to limit
    */
-  getUsers: async (root, { userId, skip, limit }, { User, Follow }) => {
+  getUsers: async (root, { userId, isPage, skip, limit }, { User, Follow }) => {
     // Find user ids, that current user follows
     const userFollowing = [];
     const follow = await Follow.find({ follower: userId }, { _id: 0 }).select(
@@ -220,7 +221,7 @@ const Query = {
 
     // Find users that user is not following
     const query = {
-      $and: [{ _id: { $ne: userId } }, { _id: { $nin: userFollowing } }],
+      $and: [{ _id: { $ne: userId } }, { _id: { $nin: userFollowing } }, {isPage: isPage}],
     };
     const count = await User.where(query).countDocuments();
     const users = await User.find(query)

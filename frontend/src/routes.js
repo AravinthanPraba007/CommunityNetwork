@@ -14,6 +14,8 @@ export const EXPLORE = '/explore';
 
 export const PEOPLE = '/people';
 
+export const PAGE = '/page';
+
 export const RESOURCES = '/resources';
 
 export const JOB_SEARCH = '/job-search';

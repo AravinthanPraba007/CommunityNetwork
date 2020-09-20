@@ -79,6 +79,13 @@ const Navigation = () => {
         </ListItem>
       </Link>
 
+      <Link exact activeClassName="selected" to={Routes.PAGE}>
+        <ListItem>
+          <PeopleIcon />
+          <Name>Pages</Name>
+        </ListItem>
+      </Link>
+
       <Link exact activeClassName="selected" to={Routes.NOTIFICATIONS}>
         <ListItem>
           <NotificationIcon width={18} />
